@@ -1,10 +1,6 @@
-import os
 from flask import Flask, request, jsonify
-from werkzeug.middleware.proxy_fix import ProxyFix
 
 app = Flask(__name__)
-
-app.wsgi_app = ProxyFix(app.wsgi_app)
 
 @app.route('/bfhl', methods=['POST'])
 def handle_post():
@@ -34,4 +30,4 @@ def handle_get():
     return jsonify({"operation_code": 1})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000)
